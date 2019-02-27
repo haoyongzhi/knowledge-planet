@@ -7,11 +7,13 @@ a) anaconda环境配置
 参考：[Python入门：Anaconda和Pycharm的安装和配置](https://www.cnblogs.com/yuxuefeng/articles/9235431.html)
 
 b)  解释器：
+
 当我们编写Python代码时，我们得到的是一个包含Python代码的以.py为扩展名的文本文件。要运行代码，就需要Python解释器去执行.py文件。CPython是官方自带的解释器，也是使用最广的。
+
 参考：[Python解释器](  https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/00143161198846783e33de56d4041058c3dfc7e44ee1203000)
 #### 2. python初体验
 a) print and input
-```
+``` python
 print("hello word")
 name = input()
 print("input name is:" + name)
@@ -25,33 +27,50 @@ input name is:Tom
 #### 3. python基础讲解
 a) python变量特性+命名规则
 * 变量特性
+
 可以自由赋值的量，在计算机程序中，变量不仅可以为整数或浮点数，还可以是字符串。
+
 * 命名规则
+
 Python 需要使用标识符给变量命名，其实标识符就是用于给程序中变量、类、方法命名的符号（简单来说，标识符就是合法的名字）。
+
 Python 语言的标识符必须以字母、下画线（_）开头，后面可以跟任意数目的字母、数字和下画线（_）。此处的字母并不局限于 26 个英文字母，可以包含中文字符、日文字符等。
+
 由于 Python 3 支持 UTF-8 字符集，因此 Python 3 的标识符可以使用 UTF-8 所能表示的多种语言的字符。Python 语言是区分大小写的，因此 abc 和 Abc 是两个不同的标识符。
+
 Python 2.x 对中文支持较差，如果要在 Python 2.x 程序中使用中文字符或中文变量，则需要在 Python 源程序的第一行增加“#coding:utf-8”，当然别忘了将源文件保存为 UTF-8 字符集。
+
 在使用标识符时，需要注意如下规则：
+
 1. 标识符可以由字母、数字、下画线（_）组成，其中数字不能打头。
 2. 标识符不能是 Python 关键字，但可以包含关键字。
 3. 标识符不能包含空格。
+
 例如下面变量，有些是合法的，有些是不合法的：
+
 * abc_xyz：合法。
 * HelloWorld：合法。
 * abc：合法。
 * xyz#abc：不合法，标识符中不允许出现“#”号。
 * abc1：合法。
 * 1abc：不合法，标识符不允许数字开头。
+
 参考: [Python变量命名规则（超级详细）](http://c.biancheng.net/view/2172.html)
+
 b) 注释方法
-Python中的注释有单行注释和多行注释：
+
+Python中的注释有单行注释和多行注释。
+
 Python中单行注释以 # 开头，例如：
 ``` python
 # 这是一个注释
 print("Hello, World!") 
 ```
+
 多行注释用三个单引号 ''' 或者三个双引号 """ 将注释括起来，例如:
+
 1、单引号（'''）
+
 ``` python
 '''
 这是多行注释，用三个单引号
@@ -59,7 +78,9 @@ print("Hello, World!")
 这是多行注释，用三个单引号
 '''
 ```
+
 2、双引号（"""）
+
 ``` python
 """
 这是多行注释，用三个双引号
@@ -68,10 +89,13 @@ print("Hello, World!")
 """
 print("Hello, World!") 
 ```
+
 参考:[Python3 注释](http://www.runoob.com/python3/python3-comment.html)
+
 c) python中":"作用
+
 中括号[]用于定义列表或引用列表、数组、字符串及元组中元素位置。
-eg:
+实例:
 ``` python
 list1 = ['physics', 'chemistry', 1997, 2000]
 list2 = [1, 2, 3, 4, 5, 6, 7]
@@ -84,10 +108,14 @@ list1[0]:  physics
 list2[1:5]:  [2, 3, 4, 5]
 ```
 冒号:用于定义分片、步长。
-a[:n]表示从第0个元素到第n个元素(不包括n)，a[1:]表示该列表中的第1个元素到最后一个元素。
-L[2] 读取列表中第三个元素，也即下标为2的元素
-L[-2] 读取列表中倒数第二个元素(正着数有0，倒着数没有0)
-L[1:] 从第二个元素开始截取列表
+
+```a[:n]```表示从第0个元素到第n个元素(不包括n)，a[1:]表示该列表中的第1个元素到最后一个元素。
+
+```L[2]```读取列表中第三个元素，也即下标为2的元素
+
+```L[-2]```读取列表中倒数第二个元素(正着数有0，倒着数没有0)
+
+```L[1:]```从第二个元素开始截取列表
 ``` python
 list3 = [1,2,3,4,5]
 print(list3)
@@ -101,7 +129,9 @@ print(list3[:-1])
 [1, 2, 3, 4]
 ```
 Python序列切片地址可以写为[开始：结束：步长]，其中的开始和结束可以省略。
+
 首先注意，在python3中想输出后续结果需要注意：(python3中print不换行，需要设置``` end = ''```)
+
 ``` python
 idx = range(10)
 print("type(idx):",end = '')
@@ -128,8 +158,7 @@ list(idx):[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 8
 9
 ```
-python3中range的类型还是range直接
-range(n)生成[0,n)区间整数
+python3中range的类型还是range，直接range(n)生成[0,n)区间整数
 ```
 range(10) 
 [0,1,2,3,4,5,6,7,8,9]
@@ -163,11 +192,17 @@ range(10)[::-1]
 range(10)[::-2] 
 [9,7,5,3,1]
 ```
+
 参考1:[python2和python3 print输出不换行]( https://blog.csdn.net/dcrmg/article/details/79091926)
+
 参考2:[Python基础06 循环](http://www.cnblogs.com/vamei/archive/2012/05/30/2526357.html)
+
 d) 学会使用dir()及help()
+
 * dir()
+
 dir() 函数不带参数时，返回当前范围内的变量、方法和定义的类型列表；带参数时，返回参数的属性、方法列表。如果参数包含方法__dir__()，该方法将被调用。如果参数不包含__dir__()，该方法将最大限度地收集参数信息。
+
 * help():文档查看 
 ```
 help() 
@@ -175,31 +210,39 @@ help(object)
 help('object')
 ```
 注意：object The most base type
+
 以上三种方式均可，object指需要帮助的内容，比如help(list)或help('list')。 
+
 查看过后想要退出help函数，需输入字母q，猜想q是quit的缩写； 
+
 如果使用help(object)或help('object')，退出时直接输入字母q即可； 
+
 如果是help()，输入字母q后会出现help>提示符（prompt），此时再输入字母q并按下回车键即可退出。
 
 参考1:[Python3: python3 内置函数, Python3 id() 详解, Python3 dir() 详解, Python3 str() 详解,Python3 type() 详解](http://justcode.ikeepstudying.com/2019/01/python3-python3-%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0-python3-id-%E8%AF%A6%E8%A7%A3-python3-dir-%E8%AF%A6%E8%A7%A3-python3-str-%E8%AF%A6%E8%A7%A3python3-type-%E8%AF%A6%E8%A7%A3/)
+
 参考2：[Python3 dir() 函数](  https://www.cnblogs.com/lxwphp/p/9074656.html)
+
 e) import使用
 Python3开始，import 默认只做absolute import。也就是说pack包内的```__init__.py```中如果有一句```import my_package```，Python3会去找一个叫```my_package```的包，而不会去找```pack.my_package```包。
+
 参考1：[Python 2和3在包内import时的语法差异问题](https://segmentfault.com/q/1010000000400151)
 插曲:
 * 模块（module）：用来从逻辑（实现一个功能）上组织Python代码（变量、函数、类），本质就是*.py文件。文件是物理上组织方式"module_name.py"，模块是逻辑上组织方式"module_name"。
 * 包（package）：定义了一个由模块和子包组成的Python应用程序执行环境，本质就是一个有层次的文件目录结构（必须带有一个__init__.py文件）。
+
 参考2:[Python中import机制](https://www.cnblogs.com/yan-lei/p/7828871.html)
+
 f) pep8介绍
+
 PEP8 是 Python 的一套编码规范。详细请参考：[PEP8中文版 -- Python编码风格指南](https://python.freelycode.com/contribution/detail/47)
 
 #### 4. python数值基本知识
-a) python中数值类型:int,float,bool,e记法等
+a) python中数值类型:int,float,boolean记法等
 
 Python 中的变量不需要声明。每个变量在使用前都必须赋值，变量赋值以后该变量才会被创建。在 Python 中，变量就是变量，它没有类型，我们所说的"类型"是变量所指的内存中对象的类型。
 
-等号（=）用来给变量赋值。
-
-等号（=）运算符左边是一个变量名,等号（=）运算符右边是存储在变量中的值。例如：
+等号（=）用来给变量赋值。等号（=）运算符左边是一个变量名,等号（=）运算符右边是存储在变量中的值。例如：
 
 ``` python
 counter = 100  # 整型变量
@@ -210,7 +253,8 @@ print(miles)
 print(name)
 ```
 
-b) 算数运算符
+b) 算术运算符
+
 以下假设变量a为10，变量b为21：
 
 |运算符|描述|实例|
@@ -265,6 +309,7 @@ else:
 ```
 
 e) 身份运算符
+
 身份运算符用于比较两个对象的存储单元。
 
 |运算符|描述|实例|
@@ -342,6 +387,7 @@ True
 ```
 
 f) 运算符优先级
+
 以下表格列出了从最高到最低优先级的所有运算符：
 
 |运算符|描述|
