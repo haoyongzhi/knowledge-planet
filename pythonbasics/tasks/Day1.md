@@ -4,6 +4,7 @@
 a) anaconda环境配置
 * 开发工具：Pycharm2018.2
 * 环境：Anaconda 是一个基于 Python 的数据处理和科学计算平台，它已经内置了许多非常有用的第三方库，装上Anaconda，就相当于把 Python 和一些如 Numpy、Pandas、Scrip、Matplotlib 等常用的库自动安装好了，使得安装比常规 Python 安装要容易。
+
 参考：[Python入门：Anaconda和Pycharm的安装和配置](https://www.cnblogs.com/yuxuefeng/articles/9235431.html)
 
 b)  解释器：
@@ -107,7 +108,7 @@ print("list2[1:5]:", list2[1:5])
 list1[0]:  physics
 list2[1:5]:  [2, 3, 4, 5]
 ```
-冒号:用于定义分片、步长。
+冒号```:```用于定义分片、步长。
 
 ```a[:n]```表示从第0个元素到第n个元素(不包括n)，a[1:]表示该列表中的第1个元素到最后一个元素。
 
@@ -130,7 +131,7 @@ print(list3[:-1])
 ```
 Python序列切片地址可以写为[开始：结束：步长]，其中的开始和结束可以省略。
 
-首先注意，在python3中想输出后续结果需要注意：(python3中print不换行，需要设置``` end = ''```)
+**首先注意，在python3中想输出后续结果需要注意：(python3中print不换行，需要设置``` end = ''```)**
 
 ``` python
 idx = range(10)
@@ -209,7 +210,7 @@ help()
 help(object) 
 help('object')
 ```
-注意：object The most base type
+**注意：object The most base type**
 
 以上三种方式均可，object指需要帮助的内容，比如help(list)或help('list')。 
 
@@ -227,6 +228,7 @@ e) import使用
 Python3开始，import 默认只做absolute import。也就是说pack包内的```__init__.py```中如果有一句```import my_package```，Python3会去找一个叫```my_package```的包，而不会去找```pack.my_package```包。
 
 参考1：[Python 2和3在包内import时的语法差异问题](https://segmentfault.com/q/1010000000400151)
+
 插曲:
 * 模块（module）：用来从逻辑（实现一个功能）上组织Python代码（变量、函数、类），本质就是*.py文件。文件是物理上组织方式"module_name.py"，模块是逻辑上组织方式"module_name"。
 * 包（package）：定义了一个由模块和子包组成的Python应用程序执行环境，本质就是一个有层次的文件目录结构（必须带有一个__init__.py文件）。
@@ -432,4 +434,5 @@ print ("a + (b * c) / d 运算结果为：",  e)
 (a + b) * (c / d) 运算结果为： 90.0
 a + (b * c) / d 运算结果为： 50.0
 ```
+
 参考：[Python3 运算符](http://www.runoob.com/python3/python3-basic-operators.html)
