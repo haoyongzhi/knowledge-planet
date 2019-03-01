@@ -387,10 +387,14 @@ I am leo, and I love python.
 
 * 字符串常用方法总结
 
-![字符串常用方法](http://ww3.sinaimg.cn/mw690/c3c88275gw1f53sclh1fbj20kk0bd403.jpg)
+![字符串常用方法](resources/kp-pythonbasics-tasks2.jpg)
 
 * 字符串不变性
 
 字符串是一种不可变数据类型,就是说它的值是不能被改变或修改的。这就意味着如果你想修改一个字符串,或者截取一个子串,或者在字符串的末尾连接另一个字符串等等,你必须新建一个字符串。
 
 在Python中，**左值必须是一个完整的对象**，比如说一个字符串对象，不能是字符串的一部分。
+
+参考链接1：[Python 序列： 字符串](http://blog.konghy.cn/2016/01/09/python-string/)
+
+参考链接2：[05、Python 系列之--python list「列表」 、tuple「元组」 、 dictionary「字典」](https://www.jianshu.com/p/351fa3464119)
