@@ -1,4 +1,4 @@
-#### 基础(用时70分钟)
+#### 【python基础】-Task2-队列、元组
 序列是Python中最基本的数据结构。
 
 Python有6个序列的内置类型，但最常见的是列表和元组。
@@ -124,7 +124,7 @@ print("未排序之前的成绩:%s"%scores)
 scores.sort()
 print("从小大大排序之后的成绩:%s"%scores)
 for score in scores:
-    if(score >= 80)
+    if(score >= 80):
         youxiu.append(score)
 print("全班达到80分以上的成绩共有%d个%s"%(len(youxiu),youxiu))
 ```
