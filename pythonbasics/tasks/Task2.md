@@ -387,7 +387,7 @@ I am leo, and I love python.
 
 * 字符串常用方法总结
 
-![字符串常用方法](../../resources/kp-pythonbasics-tasks2.jpg)
+![字符串常用方法](../../resources/kp-pythonbasics-task2.jpg)
 
 * 字符串不变性
 
