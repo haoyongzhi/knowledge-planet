@@ -40,3 +40,38 @@ for score in scores:
     if(score >= 80):
         youxiu.append(score)
 print("全班达到80分以上的成绩共有%d个%s"%(len(youxiu),youxiu))
+scores = [60,54,80,99,45,79,26,72,76,75,88,89,95]
+print("未排序之前的成绩:%s"%scores)
+scores.sort(reverse=True)
+print("从大到小排序之后的成绩:%s"%scores)
+print("=================")
+names = ["Zhangsan","Lisi","Wangwu"]
+print("原名字顺序:%s"%names)
+names.sort()
+print("从小到大排序后:%s"%names)
+print("=================")
+scores = [60,90,87,56,43,88]
+print("反向排序之前的成绩：%s"%scores)
+scores.reverse()
+print("反向排序之后的成绩：%s"%scores)
+print("=================")
+# 移除姓名列表中最后一个名字
+names = ["Zhangsan","Lisi","Wangwu"]
+print("移除最后一个名字前的列表：%s"%names)
+names.pop()
+print("移除最后一个名字后的列表：%s"%names)
+print("=================")
+names = ["Zhangsan","Lisi","Wangwu"]
+print("移除最后一个名字前的列表：%s"%names)
+names.pop(1)
+print("移除索引=1的名字后的列表：%s"%names)
+print("=================")
+names = ["Zhangsan","Lisi","Wangwu","Lisi","Zhangsan"]
+print("列出所有名字：%s"%names)
+input_name = input("输入你要删除的名字:")
+for name in names:
+    if(name==input_name):
+        names.remove(name)
+print("删除指定名字后的列表：%s"%names)
+names.remove("Zhangsan")
+print("删除Zhangsan后的列表：%s"%names)

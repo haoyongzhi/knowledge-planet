@@ -122,7 +122,7 @@ scores = [60,54,80,99,45,79,26,72,76,75,88,89,95]
 youxiu = []
 print("未排序之前的成绩:%s"%scores)
 scores.sort()
-print("从小大大排序之后的成绩:%s"%scores)
+print("从小到大排序之后的成绩:%s"%scores)
 for score in scores:
     if(score >= 80):
         youxiu.append(score)
@@ -134,6 +134,97 @@ print("全班达到80分以上的成绩共有%d个%s"%(len(youxiu),youxiu))
 从小大大排序之后的成绩:[26, 45, 54, 60, 72, 75, 76, 79, 80, 88, 89, 95, 99]
 全班达到80分以上的成绩共有5个[80, 88, 89, 95, 99]
 ```
+```python
+# 全班成绩从大到小排序。
+scores = [60,54,80,99,45,79,26,72,76,75,88,89,95]
+print("未排序之前的成绩:%s"%scores)
+scores.sort(reverse=True)
+print("从大到小排序之后的成绩:%s"%scores)
+```
+输出结果：
+```
+未排序之前的成绩:[60, 54, 80, 99, 45, 79, 26, 72, 76, 75, 88, 89, 95]
+从大到小排序之后的成绩:[99, 95, 89, 88, 80, 79, 76, 75, 72, 60, 54, 45, 26]
+```
+
+除了数字排序，字符串也可以排序，按首字母ASCII码来排序(**,首字母一样，按次字母，以此类推**)
+
+```python
+# 把名字按从小到大排序
+names = ["Zhangsan","Lisi","Wangwu"]
+print("原名字顺序:%s"%names)
+names.sort()
+print("从小到大排序后:%s"%names)
+```
+输出结果：
+```
+原名字顺序:['Zhangsan', 'Lisi', 'Wangwu']
+从小到大排序后:['Lisi', 'Wangwu', 'Zhangsan']
+```
+###### `reverse`:反向列表中的数据
+```python
+scores = [60,90,87,56,43,88]
+print("反向排序之前的成绩：%s"%scores)
+scores.reverse()
+print("反向排序之后的成绩：%s"%scores)
+```
+输出结果：
+```
+反向排序之前的成绩：[60, 90, 87, 56, 43, 88]
+反向排序之后的成绩：[88, 43, 56, 87, 90, 60]
+```
+
+###### `pop`和`remove`
+`list.pop(obj=list[-1])`:默认移除列表最后一个元素。
+
+```python
+# 移除姓名列表中最后一个名字
+names = ["Zhangsan","Lisi","Wangwu"]
+print("移除最后一个名字前的列表：%s"%names)
+names.pop()
+print("移除最后一个名字后的列表：%s"%names)
+```
+输出结果：
+```
+移除最后一个名字前的列表：['Zhangsan', 'Lisi', 'Wangwu']
+移除最后一个名字后的列表：['Zhangsan', 'Lisi']
+```
+
+```python
+# 删除指定位置的姓名
+names = ["Zhangsan","Lisi","Wangwu"]
+print("移除最后一个名字前的列表：%s"%names)
+names.pop(1)
+print("移除索引=1的名字后的列表：%s"%names)
+```
+输出结果：
+```
+移除最后一个名字前的列表：['Zhangsan', 'Lisi', 'Wangwu']
+移除索引=1的名字后的列表：['Zhangsan', 'Wangwu']
+```
+
+`remove`:用于删除与列表中某个值的**第一个匹配项**
+```python
+names = ["Zhangsan","Lisi","Wangwu","Lisi","Zhangsan"]
+print("列出所有名字：%s"%names)
+input_name = input("输入你要删除的名字:")
+for name in names:
+    if(name==input_name):
+        names.remove(name)
+print("删除指定名字后的列表：%s"%names)
+names.remove("Zhangsan")
+print("删除Zhangsan后的列表：%s"%names)
+```
+输出结果：
+```
+列出所有名字：['Zhangsan', 'Lisi', 'Wangwu', 'Lisi', 'Zhangsan']
+输入你要删除的名字:Lisi
+删除指定名字后的列表：['Zhangsan', 'Wangwu', 'Zhangsan']
+删除Zhangsan后的列表：['Wangwu', 'Zhangsan']
+```
+
+**remove只能移除第一个匹配到的项**
+
 ##### 2.元组
 * 标志
 * 基本操作(创建及不可变性)
