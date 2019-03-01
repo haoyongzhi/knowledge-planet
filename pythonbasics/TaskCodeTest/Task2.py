@@ -102,3 +102,18 @@ print("=================")
 from string import Template
 s = Template("I am ${name}, and I love ${thing}.")
 print(s.substitute(name="huoty", thing="python"))
+print("=================")
+TigerChain = {"name":"TigerChain","age":18,"address":"中国陕西","love":["看书","游泳","爬山"]}
+for key in TigerChain.keys():
+    print("TigerChain 字典中的key:%s"%key)
+
+print("=================")
+dict = {"name":"zhangsan","age":18,"height":"165CM"}
+print(dict)
+for value in dict.values():
+    print("dict 字典中的 value: %s"%value)
+print("=================")
+dict = {"name":"zhangsan","age":18,"height":"165CM"}
+print("修改之前的字典：%r"%dict)
+dict["name"] = "junjun"
+print("修改之后的字典：%r"%dict)

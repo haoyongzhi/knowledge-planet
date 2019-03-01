@@ -288,7 +288,192 @@ TypeError: 'tuple' object does not support item assignment
 |min(tuple)|返回元组中最小的值|
 |tuple(seq)|将列表转化成元组|
 
-##### 3.string字符串
+##### 3.字典「dictionary」
+1.概述
+
+通过前面的学习，我们知道`list`「列表」是一个可变类型的容器「支持增、删、改、查」，并且里面可以存放任意类型的对象，那么字典「`dictionary`」也是一样，是一个可变类型的容器，可以存放个任意类型的对象，不过字典存的是键值对。
+
+字典这个东西，非常形象，我们如果遇到一个不会的字，通常会去查字典，那么拼音「或部首」查字法，都是一一对应的，一个拼音对应一个字
+
+在`python`中字典类似于`java`中的`hashmap`，`js`中的`json`
+
+字典是`Python`语言中唯一的映射类型，映射类型对象里哈希值（键，key）和指向的对象（值，value）是一对多的的关系，通常被认为是可变的哈希表。
+
+2.格式
+
+```
+dic = {key1:value1,key2:value2,key3:value3,...}
+```
+
+使用一个`{}`来把字典包起来，键值之间使用`:`来分隔，每个键值对之间使用`,`来分隔。字典中`key`是唯一的，但是值可以不必唯一。
+
+```python
+# demo1:按照拼音查找字
+dic = {"zhangsan":"张三","lisi":"李四","piaoliang":"漂亮"}
+print(dic['zhangsan'])
+print(dic['lisi'])
+print(dic['piaoliang'])
+```
+输出结果：
+```
+张三
+李四
+漂亮
+```
+```python
+# 修改字典中的 age
+xiaoli = {"name":"xiaoli","age":22,"address":"中国陕西"}
+print("小李错误的年龄：%d"%xiaoli["age"])
+# 修改年龄
+xiaoli["age"] = 23
+print("小李的年龄修改为：%d"%xiaoli["age"])
+```
+输出结果：
+```
+小李错误的年龄：22
+小李的年龄修改为：23
+```
+▶ python 06、dic字典.py
+
+3.字典的遍历
+
+* 遍历`key`
+
+```
+格式：
+dic = {"key1":"value1":"key2":"value2",...}
+for key in dic.keys():
+    print key
+```
+
+```python
+# 遍历输出字典中的key值
+TigerChain = {"name":"TigerChain","age":18,"address":"中国陕西","love":["看书","游泳","爬山"]}
+for key in TigerChain.keys():
+    print("TigerChain 字典中的key:%s"%key)
+```
+
+以上例子说明了字典中的数据可以是任意类型的
+
+输出结果：
+
+```
+TigerChain 字典中的key:name
+TigerChain 字典中的key:age
+TigerChain 字典中的key:address
+TigerChain 字典中的key:love
+```
+
+* 遍历`values`
+
+```
+格式:
+dic = {"key1":"value1":"key2":"value2",...}
+for value in dic.values():
+    print value
+```
+
+```python
+# 遍历字典中的 所有的 values
+dict = {"name":"zhangsan","age":18,"height":"165CM"}
+print(dict)
+for value in dict.values():
+    print("dict 字典中的 value: %s"%value)
+```
+
+输出结果：
+```
+{'name': 'zhangsan', 'age': 18, 'height': '165CM'}
+dict 字典中的 value: zhangsan
+dict 字典中的 value: 18
+dict 字典中的 value: 165CM
+```
+
+```python
+# 修改字典中某个 key 所对应的值
+dict = {"name":"zhangsan","age":18,"height":"165CM"}
+print("修改之前的字典：%r"%dict)
+dict["name"] = "junjun"
+print("修改之后的字典：%r"%dict)
+```
+
+输出结果：
+
+```
+修改之前的字典：{'name': 'zhangsan', 'age': 18, 'height': '165CM'}
+修改之后的字典：{'name': 'junjun', 'age': 18, 'height': '165CM'}
+```
+
+* 字典内置方法
+
+|方法|描述|
+|---|---|
+|`dict.clear()`|删除字典里所有的元素|
+|`dict.copy()`|返回一个字典的浅拷贝|
+|`dict.fromkeys(seq[,val]))`|创建一个新字典，以序列seq中元素做字典的键，val为字典所有键对应的初始值|
+|`dict.get(key,default=None)`|返回指定键的值，如果值不在字典中返回`default`值|
+|`dict.has_key(key)`|如果键在字典dict里返回`true`，否则返回`false`|
+|`dict.items()`|以列表返回可遍历的(键,值)元组数组|
+|`dict.keys()`|以列表返回一个字典所有的键|
+|`dict.update(dict2)`|把字典dict2的键/值对更新到dict里|
+|`dict.values()`|以列表返回字典中的所有值|
+|`pop(key[,default])`|删除字典给定键key所对应的值，返回值为被删除的值。key值必须给出。否则，返回default值。|
+|`popitem()`|随机返回并删除字典中的一对键和值。|
+
+一个比较综合的例子，模拟一个注册，登录，和查询的例子，当输入`r`时就是注册，输入`l`时就是登录，注册成功以后，可以看到存起来的用户名和密码「用户名和密码拿字典来存」其中姓名是键，密码是值。
+```python
+# 定义一个空字典
+dic = {}
+# 登录或注册的标志
+flag = 'r'
+# 查询的标志
+search = 'r'
+# 注册的标志
+register = 'r'
+# 登录的标志
+login = 'r'
+# 退出的标志
+exit = 'r'
+
+while flag == 'r' or 'l':
+    flag = input("注册或登录?r/l: ")
+    # 注册
+    if flag == 'r':
+        prompt = "添加用户名:"
+        uname = input(prompt)
+        upass = input("添加密码：")
+        dic[str(uname)] = str(upass)
+        print("注册成功")
+
+        search = input("是否要查询已注册的用户?s/e:")
+        if(search=='s'):
+            print(dic)
+        else:
+            continue
+        # 登录
+    elif flag == 'l':
+         loginUname = input("输入用户名:")
+         loginPass = input("输入密码：")
+         for key in dic.keys():
+             if(str(loginUname) == key and dic[key] == str(loginPass)):
+                 print("欢迎 %s 登录"%key)
+                 exit = 'q'
+                 break
+             else:
+                 exit = 'e'
+         if exit =='e':
+             print("用户名或密码错误")
+        #  登录成功退出
+         elif exit=='q':
+             break
+    else:
+        print("输入错误")
+        break
+```
+结果展示：
+[结果示例](resources/task2Dict-20190301213749.mp4 "单击查看演示")
+
+##### 4.string字符串
 
 Python 中的字符串是单引号(`''`)、双引号(`""`)、三引号(`''''''`或者`""""""`)包裹的内容。字符串是不可变类型。就是说改变一个字符串的元素需要新建一个新的字符串。字符串是由独立的字符组成的，并且这些字符可以通过切片操作顺序地访问。由于字符串属于序列类型，所以适用于序列的操作符和内建函数页同样适用于字符串，这里不再单独讲述，而只是列举一些字符串特有的操作符，方法和特性。
 
@@ -395,6 +580,8 @@ I am leo, and I love python.
 
 在Python中，**左值必须是一个完整的对象**，比如说一个字符串对象，不能是字符串的一部分。
 
-参考链接1：[Python 序列： 字符串](http://blog.konghy.cn/2016/01/09/python-string/)
+参考链接1：[Python3 列表](http://www.runoob.com/python3/python3-list.html)
 
-参考链接2：[05、Python 系列之--python list「列表」 、tuple「元组」 、 dictionary「字典」](https://www.jianshu.com/p/351fa3464119)
+参考链接2：[Python 序列： 字符串](http://blog.konghy.cn/2016/01/09/python-string/)
+
+参考链接3：[05、Python 系列之--python list「列表」 、tuple「元组」 、 dictionary「字典」](https://www.jianshu.com/p/351fa3464119)
