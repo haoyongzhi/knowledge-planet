@@ -75,3 +75,23 @@ for name in names:
 print("删除指定名字后的列表：%s"%names)
 names.remove("Zhangsan")
 print("删除Zhangsan后的列表：%s"%names)
+print("=================")
+# 创建并初始化一个元组
+names = ("Zhangsan","Lisi","Wangwu")
+print(names)
+for name in names:
+    print("我是:%s"%name)
+print("=================")
+# 统计姓名"Zhangsan"在元组中的个数
+names = ["Zhangsan","Lisi","Wangwu","Lisi","Zhangsan","zhangsan"]
+# 把一个列表转化成元组
+new_names = tuple(names)
+print(new_names)
+print("Zhangsan出现的次数:%d"%new_names.count("Zhangsan"))
+print("=================")
+# 修改元组中的项:Lisi，改为Zhaoliu
+names = ['Zhangsan', 'Lisi', 'Wangwu', 'Lisi', 'Zhangsan', 'zhangsan']
+new_names = tuple(names)
+# 尝试修改
+new_names[1] = "Zhaoliu"
+print(new_names)

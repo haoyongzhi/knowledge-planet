@@ -225,8 +225,57 @@ print("删除Zhangsan后的列表：%s"%names)
 
 **remove只能移除第一个匹配到的项**
 
-##### 2.元组
-* 标志
+通过上面我们知道我们可以对列表进行增、删、改、查。
+
+##### 2.tuple-元组
+元组和列表在结构上没有什么区别，唯一的区别就是元组是只读的，不能修改（增、删、改），是不可变类型，元组使用"()"表示。
+```python
+# 创建并初始化一个元组
+names = ("Zhangsan","Lisi","Wangwu")
+print(names)
+for name in names:
+    print("我是:%s"%name)
+```
+输出结果：
+```
+('Zhangsan', 'Lisi', 'Wangwu')
+我是:Zhangsan
+我是:Lisi
+我是:Wangwu
+```
+
+```python
+# 统计姓名"Zhangsan"在元组中的个数
+names = ["Zhangsan","Lisi","Wangwu","Lisi","Zhangsan","zhangsan"]
+# 把一个列表转化成元组
+new_names = tuple(names)
+print(new_names)
+print("Zhangsan出现的次数:%d"%new_names.count("Zhangsan"))
+```
+输出结果：
+```
+('Zhangsan', 'Lisi', 'Wangwu', 'Lisi', 'Zhangsan', 'zhangsan')
+Zhangsan出现的次数:2
+```
+**注意:count区分大小写**
+
+```python
+# 修改元组中的项:Lisi，改为Zhaoliu
+names = ['Zhangsan', 'Lisi', 'Wangwu', 'Lisi', 'Zhangsan', 'zhangsan']
+new_names = tuple(names)
+# 尝试修改
+new_names[1] = "Zhaoliu"
+print(new_names)
+```
+输出结果：
+```
+删除指定名字后的列表：['Zhangsan', 'Lisi', 'Wangwu', 'Lisi', 'Zhangsan']
+  File "xxx/knowledge-planet/pythonbasics/TaskCodeTest/Task2.py", line 96, in <module>
+删除Zhangsan后的列表：['Lisi', 'Wangwu', 'Lisi', 'Zhangsan']
+    new_names[1] = "Zhaoliu"
+('Zhangsan', 'Lisi', 'Wangwu')
+TypeError: 'tuple' object does not support item assignment
+```
 * 基本操作(创建及不可变性)
 ##### 3.string字符串
 * 定义及基本操作(`+`,`*`,读取方式)
