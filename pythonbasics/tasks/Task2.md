@@ -472,6 +472,7 @@ while flag == 'r' or 'l':
 ```
 
 结果展示：
+
 ![结果示例](../../resources/task2Dict-20190301213749.gif)
 
 ##### 4.string字符串
