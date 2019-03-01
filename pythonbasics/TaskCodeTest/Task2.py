@@ -93,5 +93,12 @@ print("=================")
 names = ['Zhangsan', 'Lisi', 'Wangwu', 'Lisi', 'Zhangsan', 'zhangsan']
 new_names = tuple(names)
 # 尝试修改
-new_names[1] = "Zhaoliu"
+#new_names[1] = "Zhaoliu"
 print(new_names)
+print("=================")
+print("C:\\nowhere")
+print(r"C:\\nowhere")
+print("=================")
+from string import Template
+s = Template("I am ${name}, and I love ${thing}.")
+print(s.substitute(name="huoty", thing="python"))
