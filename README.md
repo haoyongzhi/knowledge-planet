@@ -66,15 +66,15 @@ https://nbviewer.jupyter.org/github/pydata/pydata-book/blob/2nd-edition/ch02.ipy
 
 2019.03.02 周六 22:00，逾期未打卡者会被清退，大家自行设好闹钟
 
-#####【打卡方式】
+##### 【打卡方式】
 
 星球Task2下方评论处打卡，回复自己的编号及github链接（需上传jupyter文件） 
 
-#####【友情提醒】
+##### 【友情提醒】
 
 这两天任务量较之前有所上涨，大家尽早学习不要赶deadline，明天就是3.1了，2019已经过去1/6了
 
-#####【参考资料】
+##### 【参考资料】
 
 https://nbviewer.jupyter.org/github/pydata/pydata-book/blob/2nd-edition/ch03.ipynb
 https://nbviewer.jupyter.org/github/pydata/pydata-book/blob/2nd-edition/ch04.ipynb
