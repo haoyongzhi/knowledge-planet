@@ -368,6 +368,308 @@ i.pop()
 
 #### 3.判断语句
 
+Python3 条件控制语句是根据条件的真假来决定要执行什么样的语句，来执行相应的程序功能。
+
+##### Python3 条件语句详解
+
+Python3 中的条件语句具有三种语法形式：
+
+* 单`if`条件语句
+* `if else`条件语句
+* `if elif else`条件语句
+
+条件语句中条件可以是值 True 或 False，也可以是表达式的布尔类型上下文环境。
+
+**Python3单`if`条件语句形式**
+
+这种形式是最简单的条件语句形式，当条件为真时，此处的条件是一个布尔值，执行相应的语句：
+
+```
+if 条件 :
+    语句
+```
+实例：
+
+```python
+num = 20
+if num > 0:
+    print("num 是正数")
+```
+
+此实例的运行结果为：
+
+```
+num 是正数
+```
+
+**Python3 if else 条件语句形式**
+
+1)此种形式是当 if 的条件为真时，执行 if 条件内的语句，如果 if 条件为假，则执行 else 内的语句。
+
+```
+if 条件 :
+    语句
+else :
+    语句
+if else 条件语句实例：
+```
+
+```python
+num = -20
+if num > 0:
+    print("num 是正数")
+else:
+    print("num 是负数")
+```
+
+ 此实例的运行结果为：
+
+```
+num 是负数
+```
+
+**Python3 `if elif else`条件语句形式**
+
+1）此种形式是复杂的条件语句形式，当 if 的条件为真时，执行 if 条件内的语句，否则则测试 elif 条件的真值，如果为真，则执行 elif 内的语句，否则执行 else 内的语句。
+
+```
+if 条件 :
+    语句
+elif 条件 :
+    语句
+else :
+    语句
+if elif else 条件语句实例：
+```
+
+```python
+num = 0
+if num > 0:
+    print("num 是正数")
+elif num < 0:
+    print("num 是负数")
+else:
+    print("num 是零")
+```
+
+此实例的运行结果为：
+
+```
+num 是零
+```
+
+2）此种形式可以包含多个 elif 条件语句，形式如下：
+
+```
+if 条件 :
+    语句
+elif 条件 :
+    语句
+elif 条件 :
+    语句
+else :
+    语句
+```
+多个`elif`条件语句实例：
+
+```python
+student = "大学生"
+if student == "小学生":
+    print("Student 是小学生")
+elif student == "初中生":
+    print("Student 是初中生")
+elif student == "高中生":
+    print("Student 是高中生")
+else:
+    print("Student 是大学生")
+```
+
+此实例的运行结果为：
+
+```
+Student 是大学生
+```
+
+**Python3 `if`条件语句常用操作符**
+
+`if`条件语句中，对条件的判断一般是比较（当然可以是任意布尔类型上下文环境），所以常用的操作符有一下的比较操作符：
+
+|操作符|描述|
+|---|---|
+|<||小于|
+|<=|小于或等于|
+|>|大于|
+|>=|大于或等于|
+|==|等于，比较对象是否相等|
+|!=|不等于|
+
+**Python3 if 条件语句的嵌套**
+
+在`if`条件语句中的`if`语句，`elif`语句，`else`语句中都可以嵌套入`if`语句三种语法形式中任何一种形式，如：
+
+```
+​if 条件 :
+    if 条件 :
+        语句
+    else :
+        语句
+elif 条件 :
+    if 条件 :
+        语句
+    else :
+        语句
+else :
+    if 条件 :
+        语句
+    else :
+        语句
+```
+
 #### 4.三目表达式
 
 #### 5.循环语句
+
+Python3 循环语句根据特定的条件的多次执行特定的语句，在 Python 3 中用来实现循环功能的语句有 for 语句和 while 语句。
+
+##### 为什么需要循环语句？
+
+假如要计算 1 + 2 + 3 的结果，可以直接写算术表达式：
+
+```python
+1 + 2 + 3
+6
+```
+
+但是如果要计算`1 + 2 + 3 + ... + 10000`的结果，使用算术表达式就非常的麻烦，这时我们可以借助循环语句来完成计算，非常简单。
+
+假如要计算`1 + 2 + 3 + ... + x`的结果，`x`是用户输入的任意一个值，那么使用算术表达式就不能完成计算，这时也需要借助循环语句。
+
+##### Python3 for 循环语句
+
+Python3 中 for 语句中不像其他语言那样，其他语言在 for 语句中包含初始值，条件判断语句，递增（其他语言的 for 循环形式 `for(i=0, i<=10, i++){}`），Python3 的 for 语句的一般形式如下：
+
+```
+for variable in sequence:
+    statements
+[else
+    else_statements]
+```
+
+解释：
+
+for 循环每次从sequence中获取上次获取元素的下一个元素，如果元素存在，则把取出的元素的值赋予variable，然后执行循环体statements语句。
+else 为可选语句，功能的是在sequence中没有下一个元素时（即sequence中的元素全部被遍历）执行else_statements语句。
+如上可以看出：Python3 for 循环需要借助 Sequence(序列) 数据类型限定循环次数，Sequence(序列) 中元素的个数就是 for 语句循环的次数，Python 3 中 Sequence(序列) 数据类型包括的子数据类型有：list(列表)，tuple(元组)，range，str(字符串)，bytes(字节)，bytesarray(字节数组)。
+
+**Python 3 for 循环实例**
+
+1）简单的 for 循环实例：
+
+```python
+py = ["Python2", "Python3"] 
+for x in py:
+    print (x)
+```
+输出结果：
+```
+Python2
+Python3
+```
+
+2）具有 else 的 for 循环语句实例：
+
+```python
+py = ["Python2", "Python3"]
+for x in py:
+    print(x)
+else:
+    print("循环结束!")
+```
+
+如上脚本的运行结果如下：
+
+```
+Python2
+Python3
+循环结束!
+```
+
+3）Python3 实现其他语言`for(i=2, i<10, i++){}`形式的相同功能的循环语句，实现这种功能需要借助 Range 对象，实例如下：
+
+```python
+r = range(2, 10)
+for i in r:
+    print(i)
+```
+
+如上脚本运行结果如下：
+
+```
+2
+3
+4
+5
+6
+7
+8
+9
+```
+
+##### Python3 while 循环语句
+
+Python3 中 while 语句和其他语言中的形式相似，在条件为真是执行循环体内的语句，Python3 的 while 语句的一般形式如下：
+
+```
+while expression:
+    statements
+[else
+    else_statements]
+```
+
+解释：
+
+while 语句重复测试 expression 的值，如果值为 True，执行循环体statements语句，否则退出循环。
+else 为可选语句，功能是在 expression 的值第一次为 False 时，执行 else_statements 语句。
+expression 可以是任意形式的值，只要可以转换为 bool 值。
+
+**Python 3 while 循环实例**
+
+1）简单的 while 循环实例：
+
+```python
+x = 1
+while x <= 5:
+    print (x)
+    x += 1
+```
+
+```
+1
+2
+3
+4
+5
+```
+
+2）具有 else 的 while 循环语句实例：
+
+```python
+x = 5
+while x <= 10:
+    print (x)
+    x += 1
+else:
+    print("循环完成！")
+```
+
+如上脚本的运行结果如下：
+
+```
+5
+6
+7
+8
+9
+10
+循环完成！
+```
