@@ -188,9 +188,183 @@ while flag == 'r' or 'l':
 ![结果示例](../../resources/task2Dict-20190301213749.gif)
 
 #### 2.集合
-* 特性
-* 创建
-* 方法
+
+set（集合）类型是Python3的一种数据类型，集合（set）中包含的元素是**无序的，无重复的序列**。集合数据类型的主要作用是测试是否是集合成员中的一个，和消除重复元素。
+
+集合（set）是可变数据类型，支持插入和删除元素，但是不支持索引和分片元素。
+
+##### Python3 定义集合
+* 1）Python3的集合使用花括号{}定义，然后在花括号中把各个元素使用逗号,分开。Python3 集合中包含的元素可以是不同的数据类型（如包括字符串和整数），但通常情况下我们创建的集合的元素都是同一种数据类型。
+
+```python
+#定义集合中包含不同数据类型
+s1 = {'Python3', 123, 321}
+```
+
+输出结果：
+
+```
+{'Python3', 123, 321}
+```
+
+```python
+#集合的元素为相同数据类型，字符串
+s2 = {'Python2', 'Python3'}
+```
+
+输出结果：
+
+```
+{'Python2', 'Python3'}
+```
+
+```python
+#集合的元素为相同数据类型，整数
+s3 = {123, 321, 234, 432}
+```
+
+输出结果：
+```
+{123, 321, 234, 432}
+```
+
+* 2）定义集合时，如果包含相同的数据元素，那么将去除重复的元素
+
+```python
+s = {123, 321, 123, 321}
+```
+
+输出结果：
+```
+{321, 123}
+```
+
+* 3）定义一个空集合，空集合使用set()函数定义，使用一对花括号{}定义的是一个字典（dictionary），
+
+```python
+st = set()
+```
+
+* 4）Python3 集合不支持嵌套定义。
+
+##### Python3 测试元素是否存在
+
+集合（set）的一个重要的功能就是测试集合中是否包含一个元素。
+
+```python
+basket = {'apple', 'orange', 'apple', 'pear', 'orange', 'banana'}
+print(basket)                      # show that duplicates have been removed
+{'orange', 'banana', 'pear', 'apple'}
+'orange' in basket                 # fast membership testing
+```
+
+输出结果：
+```
+True
+```
+
+测试集合中不否包含特定的一个元素
+
+```python
+basket = {'apple', 'orange', 'apple', 'pear', 'orange', 'banana'}
+print(basket)                      # show that duplicates have been removed
+{'orange', 'banana', 'pear', 'apple'}
+'crabgrass' not in basket            # fast membership testing
+```
+
+输出结果：
+
+```
+True
+```
+
+##### Python3 集合的添加删除操作
+
+* Python3 向集合中添加元素
+
+Python3向集合中添加元素的语法如下
+
+```
+set.add(elem)
+```
+
+实例如下：
+
+```python
+i = {1, 2, 3, 4, 5}
+i.add(8)
+```
+
+输出结果：
+
+```
+{1, 2, 3, 4, 5, 8}
+```
+
+* Python3 删除集合中的一个元素
+
+1）使用`remove(elem)`方法删除一个元素，如果元素不存在，则会抛出一个错误
+
+```
+set.remove(elem)
+```
+
+实例如下：
+
+```
+i = {1, 2, 3, 4, 5}
+i.remove(5)
+i
+{1, 2, 3, 4}
+i.remove(9)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+KeyError: 9
+```
+
+2）使用`discard(elem)`方法删除一个元素，如果元素不存在，则不会抛出错误
+
+```
+set.discard(elem)
+```
+
+实例如下：
+
+```python
+i = {1, 2, 3, 4, 5}
+i.discard(5)
+i
+{1, 2, 3, 4}
+i.discard(9)
+i
+{1, 2, 3, 4}
+```
+
+3）使用`set.pop()`删除集合中的第一个元素，并返回元素的值
+
+```
+set.pop()
+```
+
+实例如下：
+
+```python
+i = {1, 2, 3, 4, 5}
+i.pop()
+1
+```
+
+##### Python3 集合的交并差运算
+
+假设三个集合i = {1, 2, 3, 4, 5}，j = {4, 5, 6, 7, 8}，k={4, 5}
+
+![集合交叉运算](../../resources/t1.png)
+
+#####  Python3 集合的赋值运算
+
+假设三个集合i = {1, 2, 3, 4, 5}，j = {4, 5, 6, 7, 8}，k={4, 5}
+
+![集合交叉运算](../../resources/t2.png)
 
 #### 3.判断语句
 
