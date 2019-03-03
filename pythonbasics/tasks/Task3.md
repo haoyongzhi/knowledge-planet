@@ -496,7 +496,7 @@ Student 是大学生
 
 |操作符|描述|
 |---|---|
-|<||小于|
+|<|小于|
 |<=|小于或等于|
 |>|大于|
 |>=|大于或等于|
@@ -612,10 +612,12 @@ for variable in sequence:
     else_statements]
 ```
 
-解释：
+**解释：**
 
 for 循环每次从sequence中获取上次获取元素的下一个元素，如果元素存在，则把取出的元素的值赋予variable，然后执行循环体statements语句。
+
 else 为可选语句，功能的是在sequence中没有下一个元素时（即sequence中的元素全部被遍历）执行else_statements语句。
+
 如上可以看出：Python3 for 循环需要借助 Sequence(序列) 数据类型限定循环次数，Sequence(序列) 中元素的个数就是 for 语句循环的次数，Python 3 中 Sequence(序列) 数据类型包括的子数据类型有：list(列表)，tuple(元组)，range，str(字符串)，bytes(字节)，bytesarray(字节数组)。
 
 **Python 3 for 循环实例**
@@ -683,10 +685,12 @@ while expression:
     else_statements]
 ```
 
-解释：
+**解释：**
 
 while 语句重复测试 expression 的值，如果值为 True，执行循环体statements语句，否则退出循环。
+
 else 为可选语句，功能是在 expression 的值第一次为 False 时，执行 else_statements 语句。
+
 expression 可以是任意形式的值，只要可以转换为 bool 值。
 
 **Python 3 while 循环实例**
@@ -730,3 +734,13 @@ else:
 10
 循环完成！
 ```
+
+参考链接：
+
+[Python3 集合类型 | Python 3 教程](https://www.yuzhi100.com/tutorial/python3/python3-sets)
+
+[三元运算符 · Python进阶](https://eastlakeside.gitbooks.io/interpy-zh/content/ternary_operators/ternary_operators.html)
+
+[Python3 循环语句 | Python 3 教程](https://www.yuzhi100.com/tutorial/python3/python3-xunhuan-yuju))
+
+[简明 Python 教程](https://icerg.longxinlin.com/wp-content/uploads/2018/10/byte-of-python-chinese-edition.pdf)
