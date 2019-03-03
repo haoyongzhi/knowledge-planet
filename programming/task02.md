@@ -723,8 +723,272 @@ public class LoopQueue<T> implements Serializable{
 
 ### 递归
 
+
+递归(recursion)是一种常见的解决问题的方法，即把问题逐渐简单化。
+
+递归的基本思想就是“自己调用自己”，一个使用递归技术的方法会直接或者间接的调用自己。
+
+**递归结构包括两个部分：**
+
+* 定义递归头。（用来解决：什么时候不调用自身的方法。如果没有头，将陷入死循环）
+* 递归体。（用来解决：什么时候需要调用自身的方法）
+
 #### 编程实现斐波那契数列求值 f(n)=f(n-1)+f(n-2)
+
+斐波那契数计算的方法一般采用递归的方法，返回类型一般采用int或者long类型。在这种条件下会产生两个问题： 
+
+1. 效率问题，比如计算第46个斐波那契数值，需要6秒多。计算第50个斐波那契数需要一分钟左右，后面越来越难以想象。 
+2. 数值溢出问题。返回类型采用int类型的话，最多可以计算出f(46) = 1836311903, 计算f(47)时就会产生溢出。返回类型采用long类型的话，最多可以计算出f(92) = 7540113804746346429, 计算f(93)时就会产生溢出。 
+
+**解决效率问题的方法就是采用非递归的方式。** 
+
+非递归的思想 当n =1 或者 n=2的时返回1。当n大于2时，通过for循环改变值来实现。 
+
+如：初始化两个变量num1 = 1, num2 =1，把它们想象成f(1) 和 f(2)，在循环体中改变它们对应的值。把num2的值表示成num1, num2的值用num1与num2的和来表示。这样一来， num2就是f(n)的结果。 
+
+![recursive](../resources/programming-task2-recursive.jpg)
+
+非递归实现比较快，一般在0.0秒级。 
+
+**解决数值溢出的方法是采用BigInteger来实现。** 
+
+```
+import java.math.BigInteger;
+
+public class Fibonacci {
+
+	/**
+	 * 
+	 * 采用递归方法实现
+	 * 
+	 * 用int类型的话，最多可以计算出f(46) = 1836311903, 计算f(47)时就会产生溢出。
+	 * f(42) = 267914296
+	 * f(43) = 433494437
+	 * f(44) = 701408733
+	 * f(45) = 1134903170
+	 * f(46) = 1836311903
+	 * f(47) = -1323752223
+	 * 
+
+	 * 
+	 * @return 返回第n个斐波纳契数
+	 */
+	public int fibonacci1(int n) {
+		if (1 == n || 2 == n) {
+			return 1;
+		} else {
+			return fibonacci1(n - 1) + fibonacci1(n - 2);
+		}
+	}
+
+	/**
+	 * 
+	 * 采用非递归方法实现，效率比递归方法要高很多。
+	 * 
+	 * 用int类型的话，最多可以计算出f(46) = 1836311903, 计算f(47)时就会产生溢出。
+	 * f(42) = 267914296
+	 * f(43) = 433494437
+	 * f(44) = 701408733
+	 * f(45) = 1134903170
+	 * f(46) = 1836311903
+	 * f(47) = -1323752223
+	 * 
+
+	 * 
+	 * @return 返回第n个斐波纳契数
+	 */
+	public int fibonacci2(int n) {
+		if (1 == n || 2 == n) {
+			return 1;
+		}
+		int num1 = 1;
+		int num2 = 1;
+		int temp = 0;
+		for (int i = 2; i < n; i++) {
+			temp = num2;
+			num2 += num1;
+			num1 = temp;
+		}
+		return num2;
+	}
+
+	/**
+	 * 
+	 * 采用递归方法实现
+	 * 
+	 * 用long类型的话，最多可以计算出f(92) = 7540113804746346429, 计算f(93)时就会产生溢出。
+	 * f(90) = 2880067194370816120
+	 * f(91) = 4660046610375530309
+	 * f(92) = 7540113804746346429
+	 * f(93) = -6246583658587674878
+	 * 
+
+	 * 
+	 * @return 返回第n个斐波纳契数
+	 */
+	public long fibonacci3(int n) {
+		if (1 == n || 2 == n) {
+			return 1;
+		} else {
+			return fibonacci3(n - 1) + fibonacci3(n - 2);
+		}
+	}
+
+	/**
+	 * 
+	 * 采用非递归方法实现，效率比递归方法要高很多。
+	 * 
+	 * 用long类型的话，最多可以计算出f(92) = 7540113804746346429, 计算f(93)时就会产生溢出。
+	 * f(90) = 2880067194370816120
+	 * f(91) = 4660046610375530309
+	 * f(92) = 7540113804746346429
+	 * f(93) = -6246583658587674878
+	 * 
+
+	 * 
+	 * @return 返回第n个斐波纳契数
+	 */
+	public long fibonacci4(int n) {
+		if (1 == n || 2 == n) {
+			return 1;
+		}
+		long num1 = 1;
+		long num2 = 1;
+		long temp = 0;
+		for (int i = 2; i < n; i++) {
+			temp = num2;
+			num2 += num1;
+			num1 = temp;
+		}
+		return num2;
+	}
+	
+	/**
+	 * 
+	 * 采用非递归的方式来实现，同时采用BigInteger来实现。
+	 * 
+	 * 
+
+	 * @return 返回第n个斐波纳契数
+	 */
+	public BigInteger populateWithoutRecursion(int n){
+		if (1 == n || 2 == n) {
+			return new BigInteger("1");
+		}
+		BigInteger num1 = new BigInteger("1");
+		BigInteger num2 = new BigInteger("1");
+		BigInteger temp = new BigInteger("0");
+		for(int i=2;i<n;i++){
+			temp = num2;
+			num2 = num2.add(num1);
+			num1 = temp;
+		}
+		return num2;
+	}
+	
+	public static void main(String[] args) {
+		Fibonacci f = new Fibonacci();
+		long start = System.currentTimeMillis();
+		System.out.println( f.populateWithoutRecursion(500));
+		long end = System.currentTimeMillis();
+		System.out.println("Time Elasped:" + (end - start)/1000.0 + "秒");
+	}	
+}
+```
 
 #### 编程实现求阶乘 n!
 
+```
+package com.xu.main;
+ 
+import java.util.Scanner;
+ 
+public class P9 {
+ 
+	static long fact(int n)
+	{
+		if(n <= 1)
+		{
+			return 1;
+		}
+		else
+		{
+			return n * fact(n - 1);
+		}
+	}
+	
+	public static void main(String[] args) {
+		int i;
+		System.out.println("请输入要求阶乘的一个整数:");
+		Scanner input = new Scanner(System.in);
+		i = input.nextInt();
+		System.out.println(i + "的阶乘结果是："+fact(i));
+	}
+}
+```
 #### 编程实现一组数据集合的全排列
+
+组数`p = {r1, r2, r3, ... ,rn}`, 全排列为perm(p)
+
+`pn = p - {rn}`，数组p去掉第ri个元素，剩下的数组
+
+因此perm(p) = { r1 perm(p1),
+
+r2 perm(p2),
+
+... ,
+
+rn perm(pn)}
+
+其中：当n = 1时perm(p} = r1。
+
+采用递归方法实现，比如：p={1,2,3}
+
+1.先实现p1={2,3}的全排列，递归
+
+2.实现p11={3}的全排列，perm(p11)={3};
+
+3.实现p12={2}的全排列，perm(p12)={2};
+
+得到：perm(p1)={2,3; 3,2}
+
+最后的算法，就是实现数据的交换（但是注意，交换后要将数据交换回来，避免打乱数组）
+
+```
+import java.util.Arrays;
+ 
+public class permutation{
+//s表示，从array[start]后的数据进行全排列
+public static void permute(int[] array,int start){  
+	if(start==array.length){  // 输出
+			System.out.println(Arrays.toString(array));
+		}
+	else
+	for(int i=start;i<array.length;++i){
+		swap(array,start,i);  //  交换元素
+		permute(array,start+1);  //交换后，再进行全排列算法
+		swap(array,start,i);  //还原成原来的数组，便于下一次的全排列
+		}
+}
+ 
+private static void swap(int[] array,int s,int i){
+	int t=array[s];
+	array[s]=array[i];
+	array[i]=t;
+}
+public static void main(String[] args){
+		int[] array=new int[]{1,2,3,4,5,6};
+		permute(array,0);
+    }
+}
+```
+#### 参考
+
+[数组全排列---递归方法实现（java）](https://blog.csdn.net/jiao_yu/article/details/52493600)
+
+[全排列算法——递归版](https://luxuryzh.iteye.com/blog/1669841)
+
+
+
+
+
