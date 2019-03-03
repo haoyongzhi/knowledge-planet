@@ -248,13 +248,478 @@ abc
 
 对于栈的实现，我们稍微分析就知道，数据入栈和出栈的时间复杂度都为O(1)，也就是说栈操作所耗的时间不依赖栈中数据项的个数，因此操作时间很短。而且需要注意的是栈不需要比较和移动操作，我们不要画蛇添足。
 
+#### 参考
+
+[08 | 栈：如何实现浏览器的前进和后退功能？](https://xintiaohuiyi.gitbook.io/jynotebook/shu-ji/shu-ju-jie-gou-yu-suan-fa-zhi-mei/08-zhan-ff1a-ru-he-shi-xian-liu-lan-qi-de-qian-jin-he-hou-tui-gong-neng-ff1f)
+
+[算法笔记：栈，实现浏览器的前进与后退功能](https://www.jianshu.com/p/6e9205cfcadf)
+
+[数据结构和算法（四）：栈](https://zhuanlan.zhihu.com/p/37467342)
+
 ### 队列
+
+**概念**
+
+队列（简称作队，Queue）也是一种特殊的线性表，队列的数据元素以及数据元素间的逻辑关系和线性表完全相同，其差别是线性表允许在任意位置插入和删除，而队列只允许在其一端进行插入操作在其另一端进行删除操作。
+
+队列中允许进行插入操作的一端称为队尾，允许进行删除操作的一端称为队头。队列的插入操作通常称作入队列，队列的删除操作通常称作出队列。
+
+下图是一个依次向队列中插入数据元素a0,a1,...,an-1后的示意图：
+
+![queue demo](../resources/programming-task2-queue.png)
+
+上图中，a0是当前 队头数据元素，an-1是当前 队尾数据元素。
+
+为了避免当只有一个元素时，对头和队尾重合使得处理变得麻烦，所以引入两个指针：front指针指向队头元素，rear指针指向队尾元素的下一个位置，这样的话，当front指针等于rear时，此队列不是还剩一个元素，而是空队列。
+
+**队列的抽象数据类型**
+
+**数据集合：**
+
+队列的数据集合可以表示为a0,a1,…,an-1，每个数据元素的数据类型可以是任意的类型。
+
+**操作集合：**
+
+1. 入队列append(obj)：把数据元素obj插入队尾。
+2. 出队列delete()：把队头数据元素删除并由函数返回。
+3. 取队头数据元素getFront()：取队头数据元素并由函数返回。
+4. 非空否isEmpty()：非空否。若队列非空，则函数返回false，否则函数返回true。
 
 #### 用数组实现一个顺序队列
 
+```
+public class ArrayQueue <T>
+{
+    private T[] queue;//队列数组
+    private int head=0;//头下标
+    private int tail=0;//尾下标
+    private int count=0;//元素个数
+    public ArrayQueue()
+    {
+        queue=(T[])new Object[10];
+        this.head=0;//头下标为零
+        this.tail=0;
+        this.count=0;
+    }
+    public ArrayQueue(int size)
+    {
+        queue=(T[])new Object[size];
+        this.head=0;
+        this.tail=0;
+        this.count=0;
+    }
+    //入队
+    public boolean inQueue(T t)
+    {
+        if(count==queue.length)
+            return false;
+        queue[tail++%(queue.length)]=t;//如果不为空就放入下一个
+        count++;
+        return true;
+    }
+    //出队
+    public T outQueue()
+    {
+        if(count==0)//如果是空的那就不能再出栈了
+            return null;
+        count--;
+        return queue[head++%(queue.length)];
+    }
+    //查队头
+    public T showHead()
+    {
+        if(count==0) return null;
+        return queue[head];
+    }
+    //判满
+    public boolean isFull()
+    {
+        return count==queue.length;
+    }
+    //判空
+    public boolean isEmpty()
+    {
+        return count==0;
+    }
+    //
+} 
+```
+
+测试：
+
+```
+public class ArrayQueueTest {
+	public static void main(String[] args) {
+		ArrayQueue<Integer> arrayQueue=new ArrayQueue<Integer>(10);
+		System.out.println("队空？"+arrayQueue.isEmpty());
+//		for(int i=0;!arrayQueue.isFull();i++)
+//		{
+//			arrayQueue.inQueue(i);
+//		}
+		for(int i=0;i<=10;i++)
+		{
+			System.out.println(arrayQueue.inQueue(i));
+		}
+		System.out.println("队满？"+arrayQueue.isFull());
+		for(int i=0;!arrayQueue.isEmpty();i++)
+		{
+			System.out.println(arrayQueue.showHead()+"  "+arrayQueue.outQueue());
+		}
+	}
+}
+```
+
+结果：
+
+```
+队空？true
+队满？true
+0  0
+1  1
+2  2
+3  3
+4  4
+5  5
+6  6
+7  7
+8  8
+9  9
+```
+
 #### 用链表实现一个链式队列
 
+```
+package lang;
+ 
+import java.io.Serializable;
+ 
+/**
+ * @ClassName: LinkQueue
+ * @Description:  链式队列
+ * @date 2019年3月04日
+ * @param <T>
+ */
+public class LinkQueue<T> implements Serializable{
+  /**
+   * @Fields serialVersionUID : TODO
+   */
+  private static final long serialVersionUID = -6726728595616312615L;
+ 
+  //定义一个内部类Node，Node实例代表链队列的节点。
+  private class Node {
+    
+    private T data;//保存节点的数据
+   
+    private Node next;//指向下个节点的引用
+ 
+    //无参数的构造器
+    public Node() {
+    }
+ 
+    //初始化全部属性的构造器
+    public Node(T data, Node next) {
+      this.data = data;
+      this.next = next;
+    }
+  }
+  
+  private Node front;//保存该链队列的头节点
+  
+  private Node rear;//保存该链队列的尾节点
+ 
+  private int size;//保存该链队列中已包含的节点数
+ 
+  /**
+   * <p>Title: LinkQueue </p>     
+   * <p>Description: 创建空链队列 </p> 
+   */
+  public LinkQueue() {
+    //空链队列，front和rear都是null
+    front = null;
+    rear = null;
+  }
+ 
+  /**
+   * <p>Title: LinkQueue </p>    
+   * <p>Description: 以指定数据元素来创建链队列，该链队列只有一个元素</p> 
+   */
+  public LinkQueue(T element) {
+    front = new Node(element, null);
+    //只有一个节点，front、rear都指向该节点
+    rear = front;
+    size++;
+  }
+ 
+  /**
+   * @Title: size     
+   * @Description: 获取顺序队列的大小    
+   * @return
+   */
+  public int size() {
+    return size;
+  }
+ 
+  /**
+   * @Title: offer     
+   * @Description: 入队    
+   * @param element
+   */
+  public void offer(T element) {
+    //如果该链队列还是空链队列
+    if (front == null) {
+      front = new Node(element, null);     
+      rear = front;//只有一个节点，front、rear都指向该节点
+    } else {     
+      Node newNode = new Node(element, null);//创建新节点     
+      rear.next = newNode;//让尾节点的next指向新增的节点     
+      rear = newNode;//以新节点作为新的尾节点
+    }
+    size++;
+  }
+ 
+  /**
+   * @Title: poll     
+   * @Description: 出队    
+   * @return
+   */
+  public T poll() {
+    Node oldFront = front;
+    front = front.next;
+    oldFront.next = null;
+    size--;
+    return oldFront.data;
+  }
+ 
+  /**
+   * @Title: peek     
+   * @Description: 返回队列顶元素，但不删除队列顶元素    
+   * @return
+   */
+  public T peek() {
+    return rear.data;
+  }
+ 
+  /**
+   * @Title: isEmpty     
+   * @Description: 判断顺序队列是否为空队列    
+   * @return
+   */
+  public boolean isEmpty() {
+    return size == 0;
+  }
+ 
+  /**
+   * @Title: clear     
+   * @Description: 清空顺序队列
+   */
+  public void clear() {
+    //将front、rear两个节点赋为null
+    front = null;
+    rear = null;
+    size = 0;
+  }
+ 
+  public String toString() {
+    //链队列为空链队列时
+    if (isEmpty()) {
+      return "[]";
+    } else {
+      StringBuilder sb = new StringBuilder("[");
+      for (Node current = front; current != null; current = current.next) {
+        sb.append(current.data.toString() + ", ");
+      }
+      int len = sb.length();
+      return sb.delete(len - 2, len).append("]").toString();
+    }
+  }
+ 
+  public static void main(String[] args) {
+    LinkQueue<String> queue = new LinkQueue<String>("aaaa");
+    //添加两个元素
+    queue.offer("bbbb");
+    queue.offer("cccc");
+    System.out.println(queue);
+    //删除一个元素后
+    queue.poll();
+    System.out.println("删除一个元素后的队列：" + queue);
+    //再次添加一个元素
+    queue.offer("dddd");
+    System.out.println("再次添加元素后的队列：" + queue);
+    //删除一个元素后，队列可以再多加一个元素
+    queue.poll();
+    //再次加入一个元素
+    queue.offer("eeee");
+    System.out.println(queue);
+  }
+}
+```
+
 #### 实现一个循环队列
+
+```
+package lang;
+ 
+import java.io.Serializable;
+import java.util.Arrays;
+ 
+/**
+ * @ClassName: LoopQueue
+ * @Description: 循环队列
+ * @date 2014年1月20日 下午3:47:14
+ */
+public class LoopQueue<T> implements Serializable{
+  /**
+   * @Fields serialVersionUID : TODO
+   */
+  private static final long serialVersionUID = -3670496550272478781L;
+ 
+  private int DEFAULT_SIZE = 10;
+ 
+  private int capacity;//保存数组的长度
+ 
+  private Object[] elementData;//定义一个数组用于保存循环队列的元素
+ 
+  private int front = 0;//队头
+ 
+  private int rear = 0;//队尾
+ 
+  //以默认数组长度创建空循环队列
+  public LoopQueue() {
+    capacity = DEFAULT_SIZE;
+    elementData = new Object[capacity];
+  }
+ 
+  //以一个初始化元素来创建循环队列
+  public LoopQueue(T element) {
+    this();
+    elementData[0] = element;
+    rear++;
+  }
+ 
+  /**
+   * 以指定长度的数组来创建循环队列
+   * @param element 指定循环队列中第一个元素
+   * @param initSize 指定循环队列底层数组的长度
+   */
+  public LoopQueue(T element, int initSize) {
+    this.capacity = initSize;
+    elementData = new Object[capacity];
+    elementData[0] = element;
+    rear++;
+  }
+ 
+  //获取循环队列的大小
+  public int size() {
+    if (isEmpty()) {
+      return 0;
+    }
+    return rear > front ? rear - front : capacity - (front - rear);
+  }
+ 
+  //插入队列
+  public void add(T element) {
+    if (rear == front && elementData[front] != null) {
+      throw new IndexOutOfBoundsException("队列已满的异常");
+    }
+    elementData[rear++] = element;
+    //如果rear已经到头，那就转头
+    rear = rear == capacity ? 0 : rear;
+  }
+ 
+  //移除队列
+  public T remove() {
+    if (isEmpty()) {
+      throw new IndexOutOfBoundsException("空队列异常");
+    }
+    //保留队列的rear端的元素的值
+    T oldValue = (T) elementData[front];
+    //释放队列的rear端的元素
+    elementData[front++] = null;
+    //如果front已经到头，那就转头
+    front = front == capacity ? 0 : front;
+    return oldValue;
+  }
+ 
+  //返回队列顶元素，但不删除队列顶元素
+  public T element() {
+    if (isEmpty()) {
+      throw new IndexOutOfBoundsException("空队列异常");
+    }
+    return (T) elementData[front];
+  }
+ 
+  //判断循环队列是否为空队列
+  public boolean isEmpty() {
+    //rear==front且rear处的元素为null
+    return rear == front && elementData[rear] == null;
+  }
+ 
+  //清空循环队列
+  public void clear() {
+    //将底层数组所有元素赋为null
+    Arrays.fill(elementData, null);
+    front = 0;
+    rear = 0;
+  }
+ 
+  public String toString() {
+    if (isEmpty()) {
+      return "[]";
+    } else {
+      //如果front < rear，有效元素就是front到rear之间的元素
+      if (front < rear) {
+        StringBuilder sb = new StringBuilder("[");
+        for (int i = front; i < rear; i++) {
+          sb.append(elementData[i].toString() + ", ");
+        }
+        int len = sb.length();
+        return sb.delete(len - 2, len).append("]").toString();
+      }
+      //如果front >= rear，有效元素为front->capacity之间、0->front之间的
+      else {
+        StringBuilder sb = new StringBuilder("[");
+        for (int i = front; i < capacity; i++) {
+          sb.append(elementData[i].toString() + ", ");
+        }
+        for (int i = 0; i < rear; i++) {
+          sb.append(elementData[i].toString() + ", ");
+        }
+        int len = sb.length();
+        return sb.delete(len - 2, len).append("]").toString();
+      }
+    }
+  }
+ 
+  public static void main(String[] args) {
+    LoopQueue<String> queue = new LoopQueue<String>("aaaa", 3);
+    //添加两个元素
+    queue.add("bbbb");
+    queue.add("cccc");
+    //此时队列已满
+    System.out.println(queue);
+    //删除一个元素后，队列可以再多加一个元素
+    queue.remove();
+    System.out.println("删除一个元素后的队列：" + queue);
+    //再次添加一个元素，此时队列又满
+    queue.add("dddd");
+    System.out.println(queue);
+    System.out.println("队列满时的长度：" + queue.size());
+    //删除一个元素后，队列可以再多加一个元素
+    queue.remove();
+    //再次加入一个元素，此时队列又满
+    queue.add("eeee");
+    System.out.println(queue);
+  }
+}
+```
+
+#### 参考
+
+[java 用数组实现队列](https://blog.csdn.net/qq_21808961/article/details/76239094)
+
+[数据结构Java实现07----队列：顺序队列&顺序循环队列、链式队列、顺序优先队列](https://www.cnblogs.com/qianguyihao/p/4793339.html)
+
+[java队列实现（顺序队列、链式队列、循环队列）](https://blog.csdn.net/jiutianhe/article/details/18606295)
 
 ### 递归
 
