@@ -236,6 +236,5 @@ https://nbviewer.jupyter.org/github/pydata/pydata-book/blob/2nd-edition/ch04.ipy
 * Sqrt(x) （x 的平方根）
 
 [英文版](!https://leetcode.com/problems/sqrtx/)
-[中文版](!https://leetcode-cn.com/problems/sqrtx/)
 
-收起
+[中文版](!https://leetcode-cn.com/problems/sqrtx/)
