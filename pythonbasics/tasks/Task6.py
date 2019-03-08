@@ -1,6 +1,6 @@
 from turtle import*
 
-def nose(x,y):#鼻子 （公众号：数据分析联盟）
+def nose(x,y):#鼻子 （版权归：公众号：数据分析联盟，所有，我只是复现一下）
     penup()#提起笔
     goto(x,y)#定位
     pendown()#落笔，开始画
